@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("async function getWeather () {\n  const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=christchurch&APPID=9cab0b810acb28ca5552aaac3bf1138a', { mode: 'cors' });\n  const weatherData = await response.json();\n  \n  // const object = {\"City\": `${weatherData.name}`,\n  //                 \"Country\": `${weatherData.sys.country}`,\n  //                 \"Temperature\": `${weatherData.main.feels_like}`,\n  //                 \"Humidity\": `${weatherData.main.humidity}`\n  //               }\n\n  // return object;\n\n\n  console.log(weatherData);\n  console.log(weatherData.name);\n  console.log(weatherData.sys.country);\n  console.log(`${(weatherData.main.feels_like - 273.15).toFixed(1)} °C`);\n  console.log(`${weatherData.main.humidity}%`);\n    \n}\n\ngetWeather();\n\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+eval("async function getWeather () {\n  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchText.value}&APPID=9cab0b810acb28ca5552aaac3bf1138a`, { mode: 'cors' });\n  const weatherData = await response.json();\n\n  console.log(weatherData);\n  console.log(`${weatherData.name}, ${weatherData.sys.country}`);\n  console.log(`${(weatherData.main.feels_like - 273.15).toFixed(1)}°C`);\n  console.log(`${weatherData.main.humidity}%`);   \n}\n\n\nconst searchText = document.querySelector('.search-text');\nconst btn = document.querySelector('.search-btn');\n    btn.addEventListener('click', () => {\n        getWeather();\n        searchText.value = \"\";\n    });\n\n               \n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 
 /***/ })
 
