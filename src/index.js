@@ -3,16 +3,39 @@ async function getWeather () {
   const weatherData = await response.json();
 
   console.log(weatherData);
-  console.log(`${weatherData.name}, ${weatherData.sys.country}`);
-  console.log(`${(weatherData.main.feels_like - 273.15).toFixed(1)}°C`);
-  console.log(`${weatherData.main.humidity}%`);   
+
+  const processedData = processData(weatherData);
+  renderData(processedData);
+  
 }
 
 const searchText = document.querySelector('.search-text');
 const searchBtn = document.querySelector('.search-btn');
     searchBtn.addEventListener('click', () => {
-        getWeather();
+        getWeather();       
         searchText.value = "";
     });
 
-               
+function processData (weatherData) {
+
+  const myWeatherData = {city: weatherData.name,
+                        country: weatherData.sys.country,
+                        temperature: weatherData.main.feels_like,
+                        humidity: weatherData.main.humidity}
+
+  console.log(myWeatherData);                    
+  return myWeatherData;
+}
+
+function renderData(data) {
+  const cityDiv = document.getElementById("city");
+  const countryFlag = document.getElementById("flag");
+  const temperatureDiv = document.getElementById("temperature");
+  const humidityDiv = document.getElementById("humidity");
+
+  cityDiv.textContent = data.city;
+  countryFlag.src = `https://www.countryflags.io/${data.country}/flat/64.png`;
+  temperatureDiv.textContent = `Temperature: ${data.temperature}°C`;
+  humidityDiv.textContent = `Humidity: ${data.humidity}%`;
+}
+
