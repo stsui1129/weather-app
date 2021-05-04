@@ -1,22 +1,16 @@
 import renderData from './displayData';
 
 async function getWeather (city) {
+    try {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=9cab0b810acb28ca5552aaac3bf1138a`, { mode: 'cors' });
-    const weatherData = await response.json();
-  
+    const weatherData = await response.json();   
     console.log(weatherData);
-  
     const processedData = processData(weatherData);
-    renderData(processedData);
-    
+    renderData(processedData); 
+    } catch(error) {
+        console.error(error);
+        };     
   }
-  
-  const searchText = document.querySelector('.search-text');
-  const searchBtn = document.querySelector('.search-btn');
-      searchBtn.addEventListener('click', () => {
-          getWeather(searchText.value);       
-          searchText.value = "";
-      });
   
   function processData (weatherData) {
   
@@ -30,4 +24,4 @@ async function getWeather (city) {
     return myWeatherData;
   }
 
-export {getWeather, processData};
+export {getWeather};
