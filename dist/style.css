@@ -5,6 +5,7 @@
   body {
     margin: 0; 
     padding: 0;
+    background-image: url(https://p0.pikist.com/photos/800/124/clouds-sky-blue-weather-background-abstract-heaven-spring-design.jpg)
   }
 
 .search-bar {
@@ -37,19 +38,20 @@
 
 #city {
     font-size: 4rem;
-    color: #555;
     margin: 0;
 }
 
 #temperature {
     font-size: 3rem;
-    
+    text-align: center;
 }
 
 #humidity {
     font-size: 1.5rem;
+    text-align: center;
 }
 
 #pressure {
     font-size: 1.5rem;
+    text-align: center;
 }
